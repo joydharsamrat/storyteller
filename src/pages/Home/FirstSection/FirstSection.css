@@ -1,0 +1,16 @@
+.top-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/public/assets/top-banner.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.header {
+    font-family: 'Lobster', cursive;
+    color: aliceblue;
+
+}
+
+.contact-btn {
+    border-radius: 30px 0 30px 0;
+}
