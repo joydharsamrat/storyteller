@@ -1,17 +1,68 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { GoArrowSmallRight } from "react-icons/go";
+import { authContext } from '../../contexts/AuthProvider/AuthProvider';
+import Reviews from './Reviews';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ServiceDetails = () => {
+    const [reviews, setReviews] = useState([]);
     const service = useLoaderData();
+    const { user } = useContext(authContext);
     const { img, name, details, price, time, page, video, _id } = service
+    const notify = () => toast("Review added", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
 
     const handelAddReview = (event) => {
         event.preventDefault();
-        const review = event.target.review.value;
+        const reviewText = event.target.review.value;
 
-        console.log(review)
+        const review = {
+            reviewText,
+            serviceId: _id,
+            userEmail: user.email,
+            userName: user.displayName,
+            userPhoto: user.photoURL,
+            serviceName: name
+        }
+
+
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    notify()
+                    event.target.reset();
+                }
+            })
     }
+
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews/${_id}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [_id, reviews])
+
     return (
         <div className='lg:w-11/12 mx-auto my-28'>
             <div className="card lg:card-side bg-base-100 shadow-lg">
@@ -30,15 +81,30 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-10'>
-                <h1 className='text-xl font-semibold underline'>Reviews</h1>
-                <form onSubmit={handelAddReview} className='my-5'>
+            <div>
+                {
+                    user?.uid ?
+                        <div className='mt-10'>
+                            <h1 className='text-xl font-semibold underline'>Reviews</h1>
+                            <form onSubmit={handelAddReview} className='my-5'>
 
-                    <textarea name='review' className="textarea textarea-bordered w-full" placeholder="Add a review"></textarea>
+                                <textarea name='review' className="textarea textarea-bordered w-full" placeholder="Add a review"></textarea>
 
-                    <input className='  hover:bg-sky-500 px-8 py-2 font-bold text-white bg-sky-300 contact-btn' type="submit" value="Add" />
-                </form>
+                                <input className='  hover:bg-sky-500 px-8 py-2 font-bold text-white bg-sky-300 contact-btn' type="submit" value="Add" />
+                            </form>
+                        </div>
+                        :
+                        <div className='mt-5 bg-rose-200 p-5 w-fit rounded-lg text-white'>
+                            <p>Please login to add a review . <Link className='text-blue-600 underline' to='/login'>Login</Link></p>
+                        </div>
+                }
             </div>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+                {
+                    reviews.map(review => <Reviews key={review._id} review={review}></Reviews>)
+                }
+            </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

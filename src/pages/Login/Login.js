@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
     const { user, logIn, signInWithGoogle } = useContext(authContext)
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handelLogin = event => {
 
@@ -18,7 +21,7 @@ const Login = () => {
             .then(result => {
 
                 console.log(result.user)
-                navigate('/')
+                navigate(from, { replace: true })
                 form.reset()
             })
             .catch(err => console.error(err))
@@ -28,7 +31,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }
