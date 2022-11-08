@@ -1,7 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { authContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { FaUserCircle } from "react-icons/fa";
 const Header = () => {
+    const { user, logOut } = useContext(authContext);
+
+    const handelLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.error(err))
+    }
     return (
         <div className="navbar lg:px-20 bg-[whitesmoke]">
             <div className="navbar-start">
@@ -24,26 +32,30 @@ const Header = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <Link className='flex items-center' to='/'><img className='w-12 md:w-20' src="/assets/storyteller-logo.png" alt="" /> <span className='text-3xl md:text-5xl font-bold font-serif text-[skyBlue]'>Storyteller</span></Link>
+                <Link className='flex items-center' to='/'><img className='w-8 md:w-20' src="/assets/storyteller-logo.png" alt="" /> <span className='text-xl md:text-5xl font-bold font-serif text-[skyBlue]'>Storyteller</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                    <li><a>Item 1</a></li>
-                    <li tabIndex={0}>
-                        <a>
-                            Parent
-                            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                        </a>
-                        <ul className="p-2">
-                            <li><a>Submenu 1</a></li>
-                            <li><a>Submenu 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a>Item 3</a></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/home'>Home</NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/services'>Services</NavLink></li>
+
                 </ul>
             </div>
             <div className="navbar-end">
+                {
+                    user?.uid ?
+                        <>
+                            <div title={user.displayName}>
+                                {user.photoURL ?
+                                    <img className='w-8 rounded-full' src={user.photoURL} alt="" /> :
+                                    <FaUserCircle className='text-4xl text-sky-300'></FaUserCircle>}
 
+                            </div>
+                            <button onClick={handelLogout} className='btn btn-ghost'>Log Out</button>
+                        </>
+                        :
+                        <Link to='/login' className='btn btn-ghost'>Sign in</Link>
+                }
             </div>
         </div>
     );

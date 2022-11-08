@@ -17,7 +17,7 @@ const SecondSection = () => {
     return (
         <div ref={ref} className='py-1 my-40 w-11/12 mx-auto overflow-hidden'>
             <h1 className='text-5xl font-bold text-center header'>Service Packages</h1>
-            < motion.div initial={{ x: 0 }} animate={isInView ? 'none' : { x: '100vw' }} transition={{ duration: 1 }} className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20'>
+            < motion.div initial={{ x: 0 }} animate={isInView ? 'none' : { x: '100vw' }} transition={{ duration: .5 }} className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20'>
                 {
                     services.map(service => <ServiceCard
                         key={service._id}

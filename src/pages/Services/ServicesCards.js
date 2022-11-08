@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
 
 const ServicesCards = ({ service }) => {
     const { img, name, details, price, _id } = service;
     return (
-        <div className="card bg-base-100 shadow-xl image-full">
+        <motion.div whileHover={{ scale: 1.1 }} className="card bg-base-100 shadow-xl image-full">
             <figure><img src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
@@ -16,7 +17,7 @@ const ServicesCards = ({ service }) => {
                     <Link to={`/serviceDetails/${_id}`}><button className="hover:bg-sky-500 px-8 py-2 font-bold text-white bg-sky-300 contact-btn">Details</button></Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
