@@ -20,7 +20,13 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/home'>Home</NavLink></li>
                         <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/services'>Services</NavLink></li>
-
+                        {
+                            user?.uid &&
+                            <>
+                                <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/addService'>Add Services</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/myReviews'>My reviews</NavLink></li>
+                            </>
+                        }
                     </ul>
                 </div>
                 <Link className='flex items-center' to='/'><img className='w-8 md:w-20' src="/assets/storyteller-logo.png" alt="" /> <span className='text-xl md:text-5xl font-bold font-serif text-[skyBlue]'>Storyteller</span></Link>
@@ -32,8 +38,8 @@ const Header = () => {
                     {
                         user?.uid &&
                         <>
-                            <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/'>Add Services</NavLink></li>
-                            <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/'>My reviews</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/addService'>Add Services</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/myReviews'>My reviews</NavLink></li>
                         </>
                     }
                 </ul>
