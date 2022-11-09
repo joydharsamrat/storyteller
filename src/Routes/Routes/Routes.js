@@ -2,12 +2,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../layout/Main';
 import AddServices from '../../pages/AddServices/AddServices';
+import Blogs from '../../pages/Blogs/Blogs';
 import Home from '../../pages/Home/Home/Home';
 import Login from '../../pages/Login/Login';
 import MyReviews from '../../pages/MyReviews/MyReviews';
 import Register from '../../pages/Register/Register';
 import ServiceDetails from '../../pages/ServiceDetails/ServiceDetails';
 import Services from '../../pages/Services/Services';
+import ErrorPage from '../../pages/Shared/ErrorPage/ErrorPage';
 import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 
 
@@ -49,7 +51,15 @@ export const router = createBrowserRouter([
             {
                 path: 'addService',
                 element: <PrivateRoutes><AddServices></AddServices></PrivateRoutes>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
     }
 ])

@@ -57,26 +57,37 @@ const MyReviews = () => {
             })
     }
 
+
+
     return (
         <div className='my-20 w-11/12 mx-auto'>
             <Helmet>
-                <title>My-Reviews-Storyteller</title>
+                <title>My-eviews-Storyteller</title>
             </Helmet>
             <div>
                 <h1 className='header text-center text-4xl my-5'>My Reviews</h1>
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 '>
-                {
-                    reviews.map(review => <ReviewCard
-                        key={review._id}
-                        review={review}
-                        handelReviewDelete={handelReviewDelete}
-                        handelEditReview={handelEditReview}
-                    ></ReviewCard>)
-                }
+            {
+                reviews.length > 0 ?
+                    <div>
+                        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 '>
+                            {
+                                reviews.map(review => <ReviewCard
+                                    key={review._id}
+                                    review={review}
+                                    handelReviewDelete={handelReviewDelete}
+                                    handelEditReview={handelEditReview}
+                                ></ReviewCard>)
+                            }
 
-            </div>
-            <ToastContainer></ToastContainer>
+                        </div>
+                        <ToastContainer></ToastContainer>
+                    </div>
+                    :
+                    <div>
+                        <h1 className='text-5xl text-amber-500 font-bold'>No reviews were added !!!</h1>
+                    </div>
+            }
         </div>
     );
 };

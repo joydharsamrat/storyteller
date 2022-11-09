@@ -25,6 +25,7 @@ const Header = () => {
                             <>
                                 <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/addService'>Add Services</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/myReviews'>My reviews</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/Blogs'>Blogs</NavLink></li>
                             </>
                         }
                     </ul>
@@ -35,6 +36,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/home'>Home</NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/services'>Services</NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/Blogs'>Blogs</NavLink></li>
                     {
                         user?.uid &&
                         <>
