@@ -1,0 +1,7 @@
+.about-img {
+    border-radius: 100px 0;
+}
+
+.about-container {
+    border-radius: 0 100px;
+}

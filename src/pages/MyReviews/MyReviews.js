@@ -21,7 +21,7 @@ const MyReviews = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://storyteller-server-joydharsamrat.vercel.app/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('story-token')}`
             }
@@ -37,7 +37,7 @@ const MyReviews = () => {
 
 
     const handelReviewDelete = (id) => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://storyteller-server-joydharsamrat.vercel.app/reviews/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -53,7 +53,7 @@ const MyReviews = () => {
 
     const handelEditReview = (id, text) => {
         const reviewText = { text: text }
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://storyteller-server-joydharsamrat.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

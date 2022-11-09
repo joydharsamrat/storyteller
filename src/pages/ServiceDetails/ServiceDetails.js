@@ -41,7 +41,7 @@ const ServiceDetails = () => {
 
 
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://storyteller-server-joydharsamrat.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -63,7 +63,7 @@ const ServiceDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`)
+        fetch(`https://storyteller-server-joydharsamrat.vercel.app/reviews/${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [_id, render])
