@@ -23,7 +23,7 @@ const MyReviews = () => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
-    }, [user?.email, reviews])
+    }, [user?.email])
 
 
     const handelReviewDelete = (id) => {
@@ -40,6 +40,22 @@ const MyReviews = () => {
                 }
             })
     }
+
+    const handelEditReview = (id, text) => {
+        const reviewText = { text: text }
+        fetch(`http://localhost:5000/reviews/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reviewText)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
     return (
         <div className='my-20 w-11/12 mx-auto'>
             <div>
@@ -47,7 +63,12 @@ const MyReviews = () => {
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 '>
                 {
-                    reviews.map(review => <ReviewCard key={review._id} review={review} handelReviewDelete={handelReviewDelete}></ReviewCard>)
+                    reviews.map(review => <ReviewCard
+                        key={review._id}
+                        review={review}
+                        handelReviewDelete={handelReviewDelete}
+                        handelEditReview={handelEditReview}
+                    ></ReviewCard>)
                 }
 
             </div>

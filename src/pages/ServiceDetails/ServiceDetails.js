@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const service = useLoaderData();
+    const [render, setRender] = useState(false)
     const { user } = useContext(authContext);
     const { img, name, details, price, time, page, video, _id } = service
     const notify = () => toast("Review added", {
@@ -50,7 +51,9 @@ const ServiceDetails = () => {
                 console.log(data)
                 if (data.acknowledged) {
                     notify()
+                    setRender()
                     event.target.reset();
+
                 }
             })
     }
@@ -61,7 +64,7 @@ const ServiceDetails = () => {
         fetch(`http://localhost:5000/reviews/${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
-    }, [_id, reviews])
+    }, [_id, render])
 
     return (
         <div className='lg:w-11/12 mx-auto my-28'>
