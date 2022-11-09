@@ -106,7 +106,7 @@ const AddServices = () => {
                     <label className="label">
                         <span className="label-text">Details</span>
                     </label>
-                    <textarea type="text" name='details' placeholder="details" className=" rounded p-2 w-1/2 w-full border" />
+                    <textarea type="text" name='details' placeholder="details" className=" rounded p-2 w-1/2 border" />
                 </div>
 
                 <div className='text-center mt-5'>
