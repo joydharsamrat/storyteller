@@ -97,12 +97,12 @@ const ServiceDetails = () => {
                             </form>
                         </div>
                         :
-                        <div className='mt-5 bg-rose-200 p-5 w-fit rounded-lg text-white'>
+                        <div className='my-10 bg-rose-200 p-5 w-fit rounded-lg text-white'>
                             <p>Please login to add a review . <Link className='text-blue-600 underline' to='/login'>Login</Link></p>
                         </div>
                 }
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+            <div className='grid my-10 grid-cols-1 lg:grid-cols-3 gap-5'>
                 {
                     reviews.map(review => <Reviews key={review._id} review={review}></Reviews>)
                 }

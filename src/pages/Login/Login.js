@@ -4,7 +4,7 @@ import { authContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-    const { user, logIn, signInWithGoogle } = useContext(authContext)
+    const { logIn, signInWithGoogle } = useContext(authContext)
     const navigate = useNavigate();
     const location = useLocation();
 
