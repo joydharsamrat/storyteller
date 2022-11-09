@@ -27,7 +27,7 @@ const Login = () => {
                 }
 
 
-                fetch('https://storyteller-server-joydharsamrat.vercel.app/jwt', {
+                fetch('https://storyteller-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

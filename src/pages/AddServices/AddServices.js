@@ -39,7 +39,7 @@ const AddServices = () => {
         }
 
 
-        fetch('https://storyteller-server-joydharsamrat.vercel.app/services', {
+        fetch('https://storyteller-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

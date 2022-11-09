@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`https://storyteller-server-joydharsamrat.vercel.app/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://storyteller-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/login',

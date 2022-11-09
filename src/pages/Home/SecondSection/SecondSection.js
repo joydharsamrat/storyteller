@@ -9,7 +9,7 @@ const SecondSection = () => {
     const isInView = useInView(ref)
 
     useEffect(() => {
-        fetch('https://storyteller-server-joydharsamrat.vercel.app/services')
+        fetch('https://storyteller-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
             .catch(err => console.error(err))
