@@ -1,3 +1,26 @@
+# Storyteller
+# live website : https://storyteller-c49cf.web.app/
+
+# About 
+<ul>
+<li>Storyteller is a professional wedding photographer's website. </li>
+<li>It's responsive for desktop and mobile screen.</li>
+<li>It has High quality security system.</li>
+<li>Users can add review on service , and also can edit and delete that.</li>
+<li>To see,edit or delete all his/her reviews user must login first.</li>
+</ul>
+
+# Technologies used 
+
+<ul>
+<li>React</li>
+<li>Tailwind CSS</li>
+<li>Firebase</li>
+<li>React Router</li>
+<li>React helmet</li>
+<li>Framer motion etc...</li>
+</ul>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
