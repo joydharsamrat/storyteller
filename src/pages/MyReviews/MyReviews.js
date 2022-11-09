@@ -3,6 +3,7 @@ import { authContext } from '../../contexts/AuthProvider/AuthProvider';
 import ReviewCard from './ReviewCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const MyReviews = () => {
     const { user } = useContext(authContext);
@@ -58,6 +59,9 @@ const MyReviews = () => {
 
     return (
         <div className='my-20 w-11/12 mx-auto'>
+            <Helmet>
+                <title>My-Reviews-Storyteller</title>
+            </Helmet>
             <div>
                 <h1 className='header text-center text-4xl my-5'>My Reviews</h1>
             </div>

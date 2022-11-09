@@ -6,6 +6,7 @@ import Reviews from './Reviews';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
@@ -69,7 +70,9 @@ const ServiceDetails = () => {
 
     return (
         <div className='lg:w-11/12 mx-auto my-28'>
-
+            <Helmet>
+                <title>Service-details-Storyteller</title>
+            </Helmet>
             <div className="card lg:card-side bg-base-100 shadow-lg">
                 <PhotoProvider>
                     <figure className='lg:w-1/2'>

@@ -6,7 +6,7 @@ const FirstSection = () => {
         <div className='top-container pt-1 relative text-center'>
             <div className='mt-20'>
                 <h1 className='text-4xl md:text-7xl text-slate-50 header'>Visual Storyteller Of Wedding</h1>
-                <button className='cursor-pointer mt-60 lg:mt-60 hover:bg-sky-500 px-8 py-2 font-bold text-white bg-sky-300 contact-btn'>Contact</button>
+
 
             </div>
             <div className='absolute -bottom-1 w-full'>

@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import ServicesCards from './ServicesCards';
 
 const Services = () => {
-    const services = useLoaderData();
+    const [services, setServices] = useState(null)
 
+    useEffect(() => {
+        fetch('http://localhost:5000/allServices')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
         <div className='lg:w-11/12 my-28 mx-auto'>
+            <Helmet>
+                <title>Services-Storyteller</title>
+            </Helmet>
             {
-                !services ? <div className='flex justify-center items-center'>
-                    <progress className="progress h-20 w-56"></progress>
-                </div> :
+                services ?
+
                     <div>
                         <div>
                             <h1 className='text-5xl font-bold text-center header'>Our Services</h1>
@@ -24,7 +32,9 @@ const Services = () => {
                                 ></ServicesCards>)
                             }
                         </div>
-                    </div>
+                    </div> :
+                    <div className='flex justify-center items-center'>
+                        <progress className="progress h-20 w-56"></progress></div>
             }
         </div>
     );

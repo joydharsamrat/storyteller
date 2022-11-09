@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -59,6 +60,9 @@ const AddServices = () => {
 
     return (
         <div className='w-11/12 mx-auto my-20'>
+            <Helmet>
+                <title>Add-Service-Storyteller</title>
+            </Helmet>
             <h1 className='header text-4xl text-center mb-5'>Add a new service</h1>
             <form onSubmit={handelAddService} className='bg-base-200 shadow-lg py-5'>
                 <div className='hero'>
