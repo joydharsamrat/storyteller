@@ -20,12 +20,13 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/home'>Home</NavLink></li>
                         <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/services'>Services</NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/Blogs'>Blogs</NavLink></li>
                         {
                             user?.uid &&
                             <>
                                 <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/addService'>Add Services</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/myReviews'>My reviews</NavLink></li>
-                                <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/Blogs'>Blogs</NavLink></li>
+
                             </>
                         }
                     </ul>
@@ -37,6 +38,7 @@ const Header = () => {
                     <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/home'>Home</NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/services'>Services</NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'text-sky-800 underline font-semibold' : undefined} to='/Blogs'>Blogs</NavLink></li>
+
                     {
                         user?.uid &&
                         <>

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet-async';
 
 const MyReviews = () => {
-    const { user } = useContext(authContext);
+    const { user, logOut } = useContext(authContext);
     const [reviews, setReviews] = useState([]);
 
     const notify = () => toast("Successfully Deleted", {
@@ -21,10 +21,19 @@ const MyReviews = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('story-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut()
+                }
+                return res.json()
+            })
             .then(data => setReviews(data))
-    }, [user?.email])
+    }, [user?.email, logOut])
 
 
     const handelReviewDelete = (id) => {
@@ -62,13 +71,13 @@ const MyReviews = () => {
     return (
         <div className='my-20 w-11/12 mx-auto'>
             <Helmet>
-                <title>My-eviews-Storyteller</title>
+                <title>My-Reviews-Storyteller</title>
             </Helmet>
             <div>
                 <h1 className='header text-center text-4xl my-5'>My Reviews</h1>
             </div>
             {
-                reviews.length > 0 ?
+                reviews?.length > 0 ?
                     <div>
                         <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 '>
                             {
