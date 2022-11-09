@@ -5,6 +5,7 @@ import { authContext } from '../../contexts/AuthProvider/AuthProvider';
 import Reviews from './Reviews';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
@@ -68,8 +69,15 @@ const ServiceDetails = () => {
 
     return (
         <div className='lg:w-11/12 mx-auto my-28'>
+
             <div className="card lg:card-side bg-base-100 shadow-lg">
-                <figure className='lg:w-1/2'><img src={img} alt="Album" /></figure>
+                <PhotoProvider>
+                    <figure className='lg:w-1/2'>
+                        <PhotoView src={img}>
+                            <img src={img} alt="Album" />
+                        </PhotoView>
+                    </figure>
+                </PhotoProvider>
                 <div className="card-body lg:w-1/2">
                     <h2 className="card-title text-2xl">{name}</h2>
                     <p>{details}</p>
@@ -84,6 +92,7 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div>
+
             <div>
                 {
                     user?.uid ?
