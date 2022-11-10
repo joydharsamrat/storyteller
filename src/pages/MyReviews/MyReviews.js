@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 const MyReviews = () => {
     const { user, logOut } = useContext(authContext);
     const [reviews, setReviews] = useState([]);
+    const [edit, setEdit] = useState(false)
 
     const notify = () => toast("Successfully Deleted", {
         position: "top-center",
@@ -33,7 +34,7 @@ const MyReviews = () => {
                 return res.json()
             })
             .then(data => setReviews(data))
-    }, [user?.email, logOut])
+    }, [user?.email, edit, logOut,])
 
 
     const handelReviewDelete = (id) => {
@@ -62,7 +63,10 @@ const MyReviews = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                if (data.modifiedCount > 0) {
+                    console.log(data)
+                    setEdit(true)
+                }
             })
     }
 
